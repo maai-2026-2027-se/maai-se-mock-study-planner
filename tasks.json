@@ -1,0 +1,70 @@
+[
+  {
+    "id": "S1",
+    "round": 1,
+    "title": "Find pending tasks",
+    "function": "pending_tasks(tasks)",
+    "dependencies": []
+  },
+  {
+    "id": "S2",
+    "round": 1,
+    "title": "Calculate completion percentage",
+    "function": "completion_rate(tasks)",
+    "dependencies": []
+  },
+  {
+    "id": "S3",
+    "round": 1,
+    "title": "Search task titles",
+    "function": "find_tasks(tasks, query)",
+    "dependencies": []
+  },
+  {
+    "id": "S4",
+    "round": 2,
+    "title": "Fix task completion without mutation",
+    "function": "mark_done(tasks, title)",
+    "dependencies": []
+  },
+  {
+    "id": "S5",
+    "round": 2,
+    "title": "Fix session estimates",
+    "function": "estimate_sessions(minutes, block_minutes)",
+    "dependencies": []
+  },
+  {
+    "id": "S6",
+    "round": 2,
+    "title": "Fix priority ordering",
+    "function": "sort_tasks(tasks)",
+    "dependencies": []
+  },
+  {
+    "id": "S7",
+    "round": 3,
+    "title": "Build a daily plan",
+    "function": "daily_plan(tasks, budget_minutes)",
+    "dependencies": [
+      "S1"
+    ]
+  },
+  {
+    "id": "S8",
+    "round": 3,
+    "title": "Build study statistics",
+    "function": "statistics(tasks)",
+    "dependencies": [
+      "S1",
+      "S2"
+    ]
+  },
+  {
+    "id": "S9",
+    "round": 3,
+    "title": "Export study tasks to CSV",
+    "function": "to_csv(tasks)",
+    "dependencies": []
+  }
+]
