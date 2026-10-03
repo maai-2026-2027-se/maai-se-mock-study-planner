@@ -88,3 +88,7 @@ Use the final repair window to fix any failures through reviewed PRs. A repair c
 
 **Bonus:** one point only if your final team `main` passes the entire acceptance suite and your individual implementation and review are verified. Unfinished tasks still fail the final check even if they have no completion marker. The instructor grades the final committed version at the deadline; a green feature branch does not count.
 
+
+## Lint check
+
+Before opening a pull request, install `ruff==0.16.10` and run `ruff check .`. Both `lint` and `tests` must pass before merging. Do not change the supplied `ruff.toml` or CI workflow to bypass checks.

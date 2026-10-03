@@ -1,0 +1,9 @@
+target-version = "py311"
+
+[lint]
+select = ["E4", "E7", "E9", "F"]
+
+[lint.per-file-ignores]
+# Supplied acceptance tests share imports; students must not edit these tests.
+"tests/test_[CELS][1-9].py" = ["F401"]
+"tests/test_baseline.py" = ["F401"]
