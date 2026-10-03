@@ -30,3 +30,14 @@ python3 check.py --complete S1
 Commit `completed/S1.txt` with your code and test. Normal CI checks the baseline, every completed task, and student tests. Do not edit the supplied acceptance tests, runner, task manifest, or workflow.
 
 After all rounds, run `python3 check.py --all` on current `main`. All nine tasks must pass, all nine markers must exist, and the shared release-note line must contain S7, S8 and S9. The final team pass plus individual implementation/review evidence is required for the bonus.
+
+## Lint before opening a pull request
+
+Install the same pinned linter as CI, then check the whole repository:
+
+```sh
+python -m pip install ruff==0.16.10
+ruff check .
+```
+
+Every pull request runs separate `lint` and `tests` checks; both must pass before merging. Ruff checks Python errors and basic style, including student-added tests. Keep the supplied workflow and lint configuration unchanged.
