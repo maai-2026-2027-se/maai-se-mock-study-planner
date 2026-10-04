@@ -21,7 +21,10 @@ def completion_rate(tasks):
 
 def find_tasks(tasks, query):
     """S3: Search task titles. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement S3: Search task titles")
+    normalized_query = query.strip().casefold()
+    if not normalized_query:
+        return list(tasks)
+    return [task for task in tasks if normalized_query in task['title'].casefold()]
 
 
 def mark_done(tasks, title):
