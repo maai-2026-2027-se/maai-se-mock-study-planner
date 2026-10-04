@@ -36,20 +36,28 @@ def find_tasks(tasks, query):
 
 def mark_done(tasks, title):
     """S4: Fix task completion without mutation. See TASKS.md for the complete contract."""
+    if not any(task['title'] == title for task in tasks):
+        raise KeyError(title)
+
+    updated_tasks = []
     for task in tasks:
+        updated_task = dict(task)
         if task['title'] == title:
-            task['done'] = True
-    return tasks
+            updated_task['done'] = True
+        updated_tasks.append(updated_task)
+    return updated_tasks
 
 
 def estimate_sessions(minutes, block_minutes):
     """S5: Fix session estimates. See TASKS.md for the complete contract."""
-    return minutes // block_minutes
+    if minutes < 0 or block_minutes <= 0:
+        raise ValueError("minutes must be nonnegative and block_minutes must be positive")
+    return (minutes + block_minutes - 1) // block_minutes
 
 
 def sort_tasks(tasks):
     """S6: Fix priority ordering. See TASKS.md for the complete contract."""
-    return sorted(tasks, key=lambda task: task['minutes'])
+    return sorted(tasks, key=lambda task: (-task['minutes'], task['title'].casefold()))
 
 
 def daily_plan(tasks, budget_minutes):
