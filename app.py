@@ -62,17 +62,35 @@ def sort_tasks(tasks):
 
 def daily_plan(tasks, budget_minutes):
     """S7: Build a daily plan. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement S7: Build a daily plan")
+    if budget_minutes < 0:
+        raise ValueError("budget_minutes must be non-negative")
+
+    remaining = budget_minutes
+    plan = []
+    for task in pending_tasks(tasks):
+        if task['minutes'] <= remaining:
+            plan.append(task)
+            remaining -= task['minutes']
+    return plan
 
 
 def statistics(tasks):
     """S8: Build study statistics. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement S8: Build study statistics")
+    return {
+        'total_minutes': total_minutes(tasks),
+        'pending_minutes': sum(task['minutes'] for task in tasks if not task['done']),
+        'completion_percent': completion_rate(tasks),
+    }
 
 
 def to_csv(tasks):
     """S9: Export study tasks to CSV. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement S9: Export study tasks to CSV")
+    output = io.StringIO(newline='')
+    writer = csv.writer(output, lineterminator='\n')
+    writer.writerow(['title', 'minutes', 'done'])
+    for task in tasks:
+        writer.writerow([task['title'], task['minutes'], 1 if task['done'] else 0])
+    return output.getvalue()
 
 
 if __name__ == "__main__":
