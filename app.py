@@ -11,7 +11,7 @@ def total_minutes(tasks):
 
 def pending_tasks(tasks):
     """S1: Find pending tasks. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement S1: Find pending tasks")
+    return [task for task in tasks if not task['done']]
 
 
 def completion_rate(tasks):
