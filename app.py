@@ -16,7 +16,14 @@ def pending_tasks(tasks):
 
 def completion_rate(tasks):
     """S2: Calculate completion percentage. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement S2: Calculate completion percentage")
+    if not tasks:
+        return 0.0
+    done_count = sum(1 for task in tasks if task['done'])
+    print(f"Done count: {done_count}, Total tasks: {len(tasks)}")
+    print(f"Completion rate (before rounding): {(done_count / len(tasks)) * 100}")
+    result = round((done_count / len(tasks)) * 100, 1)
+    print(f"Completion rate (after rounding): {result}")
+    return result
 
 
 def find_tasks(tasks, query):
